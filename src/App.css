@@ -1,0 +1,72 @@
+.pagina {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #d3d3d3;
+}
+
+header {
+  height: 48px;
+  background-color: #fff0c8;
+  border: 2px solid #3025a8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header h1 {
+  margin: 0;
+  color: #176b19;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+nav {
+  height: 27px;
+  background-color: #8ed0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+nav a {
+  color: #8b0000;
+  font-family: "Times New Roman", serif;
+  font-size: 8px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+main {
+  text-align: center;
+}
+
+main h2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Georgia, serif;
+  font-size: 16px;
+}
+
+main p {
+  margin: 0 15px 10px 15px;
+  color: #551a8b;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.15;
+}
+
+.livros {
+  text-align: center;
+}
+
+.lista-livros {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.lista-livros img {
+  width: 130px;
+  height: 200px;
+}
