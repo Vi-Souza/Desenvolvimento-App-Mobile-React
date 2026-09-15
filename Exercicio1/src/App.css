@@ -70,3 +70,78 @@ main p {
   width: 130px;
   height: 200px;
 }
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.mapa {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.mapa-container {
+  display: flex;
+  justify-content: center;
+}
+
+.contatos {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tabela-contatos {
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+.tabela-contatos th,
+.tabela-contatos td {
+  border: 2px dashed red;
+  padding: 8px 20px;
+}
+
+.tabela-contatos th {
+  font-weight: bold;
+}
+
+.sites-consulta {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.caixa-amarela {
+  background-color: yellow;
+  color: red;
+  font-weight: bold;
+  padding: 15px 25px;
+  max-width: 400px;
+}
+
+.caixa-amarela a {
+  color: red;
+}
+
+.rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fbe0c0;
+  width: 90%;
+  margin: 20px auto;
+  padding: 20px 40px;
+}
+
+.logo-rodape {
+  width: 80px;
+  height: auto;
+}
+
+.texto-rodape {
+  text-align: center;
+  font-family: "Comic Sans MS", cursive;
+  font-size: 15pt;
+}
