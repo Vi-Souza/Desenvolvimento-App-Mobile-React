@@ -1,0 +1,62 @@
+/* Container cinza principal */
+.container {
+  background-color: #808080;
+  width: 320px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Caixa de texto */
+.input-palpite {
+  width: 100%;
+  height: 42px;
+  text-align: center;
+  font-size: 22px;
+  border: none;
+  outline: none;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+/* Botão */
+.btn-verificar {
+  padding: 6px 14px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #c0c0c0;
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+.btn-verificar:hover {
+  background-color: #f0f0f0;
+}
+
+/* Faixa de mensagem */
+.faixa-mensagem {
+  width: 100%;
+  padding: 8px 0;
+  text-align: center;
+  min-height: 22px;
+}
+
+.faixa-mensagem span {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: serif;
+}
+
+/* Classes dinâmicas para o status */
+.faixa-mensagem.vermelho {
+  background-color: red;
+}
+
+.faixa-mensagem.verde {
+  background-color: green;
+}
