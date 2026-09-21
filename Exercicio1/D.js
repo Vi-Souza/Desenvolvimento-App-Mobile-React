@@ -1,12 +1,12 @@
 // Objetos
 const jogador1 = {
-  nome: "Neymar Jr.",
-  clube: "Al-Hilal"
+  nome: "Yuri Alberto",
+  clube: "Corinthians"
 };
 
 const jogador2 = {
-  nome: "Lionel Messi",
-  clube: "Inter Miami"
+  nome: "Lamine Yamal",
+  clube: "Barcelona"
 };
 
 // Função base utilizando o 'this'
