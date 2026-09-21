@@ -1,122 +1,131 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { Component } from 'react';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+class App extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    this.state = {
+      display: '0',
+      primeiroOperando: null,
+      operador: null,
+      esperandoSegundoOperando: false,
+    };
+  }
+
+  // Insere os números (0 a 9)
+  adicionarDigito = (digito) => {
+    const { display, esperandoSegundoOperando } = this.state;
+
+    if (esperandoSegundoOperando) {
+      this.setState({
+        display: String(digito),
+        esperandoSegundoOperando: false,
+      });
+    } else {
+      this.setState({
+        display: display === '0' ? String(digito) : display + digito,
+      });
+    }
+  };
+
+  // Define a operação (+, -, *, /)
+  definirOperacao = (proximoOperador) => {
+    const { display, primeiroOperando, operador } = this.state;
+    const valorAtual = parseFloat(display);
+
+    if (primeiroOperando === null) {
+      this.setState({
+        primeiroOperando: valorAtual,
+        operador: proximoOperador,
+        esperandoSegundoOperando: true,
+      });
+    } else if (operador) {
+      const resultado = this.calcular(primeiroOperando, valorAtual, operador);
+      this.setState({
+        display: String(resultado),
+        primeiroOperando: resultado,
+        operador: proximoOperador,
+        esperandoSegundoOperando: true,
+      });
+    }
+  };
+
+  // Executa o cálculo matemático
+  calcular = (num1, num2, operador) => {
+    switch (operador) {
+      case '+':
+        return num1 + num2;
+      case '-':
+        return num1 - num2;
+      case '*':
+        return num1 * num2;
+      case '/':
+        return num2 !== 0 ? num1 / num2 : 'Erro';
+      default:
+        return num2;
+    }
+  };
+
+  // Botão "="
+  executarResultado = () => {
+    const { display, primeiroOperando, operador } = this.state;
+    const valorAtual = parseFloat(display);
+
+    if (operador && primeiroOperando !== null) {
+      const resultado = this.calcular(primeiroOperando, valorAtual, operador);
+      this.setState({
+        display: String(resultado),
+        primeiroOperando: null,
+        operador: null,
+        esperandoSegundoOperando: false,
+      });
+    }
+  };
+
+  // Botão "C" (Limpar)
+  limpar = () => {
+    this.setState({
+      display: '0',
+      primeiroOperando: null,
+      operador: null,
+      esperandoSegundoOperando: false,
+    });
+  };
+
+  render() {
+    return (
+      <div className="calc-container">
+        <div className="calc-display">{this.state.display}</div>
+
+        <div className="calc-grid">
+          {/* Linha 1 */}
+          <button className="calc-button" onClick={() => this.adicionarDigito('7')}>7</button>
+          <button className="calc-button" onClick={() => this.adicionarDigito('8')}>8</button>
+          <button className="calc-button" onClick={() => this.adicionarDigito('9')}>9</button>
+          <button className="calc-button" onClick={() => this.definirOperacao('*')}>*</button>
+
+          {/* Linha 2 */}
+          <button className="calc-button" onClick={() => this.adicionarDigito('4')}>4</button>
+          <button className="calc-button" onClick={() => this.adicionarDigito('5')}>5</button>
+          <button className="calc-button" onClick={() => this.adicionarDigito('6')}>6</button>
+          <button className="calc-button" onClick={() => this.definirOperacao('/')}>/</button>
+
+          {/* Linha 3 */}
+          <button className="calc-button" onClick={() => this.adicionarDigito('1')}>1</button>
+          <button className="calc-button" onClick={() => this.adicionarDigito('2')}>2</button>
+          <button className="calc-button" onClick={() => this.adicionarDigito('3')}>3</button>
+          <button className="calc-button" onClick={() => this.definirOperacao('-')}>-</button>
+
+          {/* Linha 4 */}
+          <button className="calc-button" onClick={this.limpar}>C</button>
+          <button className="calc-button" onClick={() => this.adicionarDigito('0')}>0</button>
+          <button className="calc-button" onClick={this.executarResultado}>=</button>
+          <button className="calc-button" onClick={() => this.definirOperacao('+')}>+</button>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      </div>
+    );
+  }
 }
 
-export default App
+export default App;
